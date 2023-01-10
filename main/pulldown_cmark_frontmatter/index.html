@@ -3,7 +3,7 @@
 <a href="https://crates.io/crates/pulldown-cmark-frontmatter"><img src="https://img.shields.io/crates/v/pulldown-cmark-frontmatter.svg" alt="crate version" /></a>
 <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/actions?query=workflow:Tests"><img src="https://img.shields.io/github/actions/workflow/status/khonsulabs/pulldown-cmark-frontmatter/rust.yml?branch=main" alt="Live Build Status" /></a>
 <a href="https://khonsulabs.github.io/pulldown-cmark-frontmatter/coverage/"><img src="https://khonsulabs.github.io/pulldown-cmark-frontmatter/coverage/badge.svg" alt="HTML Coverage Report for main branch" /></a>
-<a href="https://khonsulabs.github.io/pulldown-cmark-frontmatter/main/pulldown-cmark-frontmatter"><img src="https://img.shields.io/badge/docs-main-informational" alt="Documentation" /></a></p>
+<a href="https://khonsulabs.github.io/pulldown-cmark-frontmatter/main/pulldown_cmark_frontmatter"><img src="https://img.shields.io/badge/docs-main-informational" alt="Documentation" /></a></p>
 <p><em>This crate was written by someone unaffiliated with the <code>pulldown-cmark</code>
 crate.</em></p>
 <p>This crate makes it easy to parse frontmatter contained within Markdown
@@ -24,12 +24,12 @@ document. The heading will still be returned when iterating over the
 <p>After the optional top-level heading, if a code block is encountered, it will be
 returned as <code>Frontmatter::code_block</code>. Unlike the heading, <em>the frontmatter code
 block will not appear in the iterated <code>Event</code>s</em>.</p>
-<p>This repository includes <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/frontmatter-example.md">frontmatter-example.md</a>
-which both the <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/html.rs">HTML rendering example</a> and the <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/extractor.rs">extractor
+<p>This repository includes <a href="https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/main/frontmatter-example.md">frontmatter-example.md</a>
+which both the <a href="https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/main/examples/html.rs">HTML rendering example</a> and the <a href="https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/main/examples/extractor.rs">extractor
 example</a> use.</p>
 <h3 id="html-rendering-example"><a href="#html-rendering-example">HTML Rendering Example</a></h3>
 <p>This example shows how to use this crate with <code>pulldown-cmark</code>’s html module. It
-is included in the repository at <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/html.rs">examples/html.rs</a>.</p>
+is included in the repository at <a href="https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/main/examples/html.rs">examples/html.rs</a>.</p>
 
 <div class="example-wrap ignore"><div class='tooltip'>ⓘ</div><pre class="rust rust-example-rendered"><code><span class="comment">// This example renders the example Markdown to html using
 // `pulldown_cmark::html`, while also extracting the frontmatter from
@@ -53,13 +53,13 @@ pulldown_cmark::html::push_html(<span class="kw-2">&amp;mut </span>rendered, <sp
 <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
 <span class="macro">assert_eq!</span>(code_block.language.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;toml&quot;</span>));
 <span class="kw">let </span>attrs: ExampleAttributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).expect(<span class="string">&quot;invalid toml&quot;</span>);
-<span class="macro">assert_eq!</span>(attrs.author, <span class="string">&quot;https://fosstodon.org/ecton&quot;</span>);</code></pre></div>
-<p>The repository includes the <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/frontmatter-example.html">rendered html output</a>
+<span class="macro">assert_eq!</span>(attrs.author, <span class="string">&quot;https://fosstodon.org/@ecton&quot;</span>);</code></pre></div>
+<p>The repository includes the <a href="https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/main/frontmatter-example.html">rendered html output</a>
 to see what the produced HTML looks like.</p>
 <h3 id="extractor-example"><a href="#extractor-example">Extractor Example</a></h3>
 <p>This example extracts the frontmatter from a Markdown document without parsing
 the entire document. It is included in the repository at
-<a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/extractor.rs">examples/extractor.rs</a>.</p>
+<a href="https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/main/examples/extractor.rs">examples/extractor.rs</a>.</p>
 
 <div class="example-wrap ignore"><div class='tooltip'>ⓘ</div><pre class="rust rust-example-rendered"><code><span class="comment">// This example extracts the frontmatter from the Markdown,
 // `FrontmatterExtractor::extract()` which stops parsing the Markdown
@@ -73,7 +73,7 @@ the entire document. It is included in the repository at
 <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
 <span class="macro">assert_eq!</span>(code_block.language.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;toml&quot;</span>));
 <span class="kw">let </span>attrs: ExampleAttributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).expect(<span class="string">&quot;invalid toml&quot;</span>);
-<span class="macro">assert_eq!</span>(attrs.author, <span class="string">&quot;https://fosstodon.org/ecton&quot;</span>);</code></pre></div>
+<span class="macro">assert_eq!</span>(attrs.author, <span class="string">&quot;https://fosstodon.org/@ecton&quot;</span>);</code></pre></div>
 <h3 id="open-source-licenses"><a href="#open-source-licenses">Open-source Licenses</a></h3>
 <p>This project, like all projects from <a href="https://khonsulabs.com/">Khonsu Labs</a>, are
 open-source. This repository is available under the <a href="./LICENSE-MIT">MIT License</a>
