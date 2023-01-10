@@ -247,6 +247,35 @@
 <span id="247">247</span>
 <span id="248">248</span>
 <span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
 </pre><pre class="rust"><code><span class="attribute">#![doc = <span class="macro">include_str!</span>(<span class="string">&quot;../README.md&quot;</span>)]
 #![forbid(unsafe_code)]
 #![warn(
@@ -334,10 +363,8 @@
     <span class="doccomment">/// Returns an instance that parses `markdown` with the default
     /// [`pulldown_cmark::Parser`].
     </span><span class="attribute">#[must_use]
-    </span><span class="kw">pub fn </span>parse_from_markdown(markdown: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
-        <span class="kw">let </span><span class="kw-2">mut </span>parser = <span class="self">Self</span>::new(pulldown_cmark::Parser::new(markdown));
-        <span class="kw">while </span>parser.next().is_some() {}
-        parser
+    </span><span class="kw">pub fn </span>from_markdown(markdown: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new(pulldown_cmark::Parser::new(markdown))
     }
 }
 
@@ -478,7 +505,7 @@ hello = &quot;world&quot;
 
 This is regular text
 &quot;#</span>;
-    <span class="kw">let </span><span class="kw-2">mut </span>parser = FrontmatterExtractor::new(pulldown_cmark::Parser::new(source));
+    <span class="kw">let </span><span class="kw-2">mut </span>parser = FrontmatterExtractor::from_markdown(source);
     <span class="kw">let </span><span class="kw-2">mut </span>html = String::new();
     pulldown_cmark::html::push_html(<span class="kw-2">&amp;mut </span>html, <span class="kw-2">&amp;mut </span>parser);
     <span class="macro">assert_eq!</span>(
@@ -492,6 +519,37 @@ This is regular text
 
     <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
     <span class="macro">assert_eq!</span>(code_block.language, <span class="prelude-val">Some</span>(CowStr::from(<span class="string">&quot;toml&quot;</span>)));
+    <span class="kw">let </span>deserialized: Attributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).unwrap();
+
+    <span class="macro">assert_eq!</span>(deserialized.hello, <span class="string">&quot;world&quot;</span>);
+}
+
+<span class="attribute">#[test]
+</span><span class="kw">fn </span>indented_parse_test() {
+    <span class="attribute">#[derive(serde::Serialize, serde::Deserialize, Debug)]
+    </span><span class="kw">struct </span>Attributes {
+        hello: String,
+    }
+    <span class="kw">let </span>source = <span class="string">r#&quot;# My **Document**
+
+    hello = &quot;world&quot;
+
+This is regular text
+&quot;#</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>parser = FrontmatterExtractor::from_markdown(source);
+    <span class="kw">let </span><span class="kw-2">mut </span>html = String::new();
+    pulldown_cmark::html::push_html(<span class="kw-2">&amp;mut </span>html, <span class="kw-2">&amp;mut </span>parser);
+    <span class="macro">assert_eq!</span>(
+        html,
+        <span class="string">&quot;&lt;h1&gt;My &lt;strong&gt;Document&lt;/strong&gt;&lt;/h1&gt;\n&lt;p&gt;This is regular text&lt;/p&gt;\n&quot;
+    </span>);
+
+    <span class="kw">let </span>frontmatter = parser.frontmatter.expect(<span class="string">&quot;frontmatter not detected&quot;</span>);
+
+    <span class="macro">assert_eq!</span>(frontmatter.title.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;My Document&quot;</span>));
+
+    <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
+    <span class="macro">assert_eq!</span>(code_block.language, <span class="prelude-val">None</span>);
     <span class="kw">let </span>deserialized: Attributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).unwrap();
 
     <span class="macro">assert_eq!</span>(deserialized.hello, <span class="string">&quot;world&quot;</span>);
