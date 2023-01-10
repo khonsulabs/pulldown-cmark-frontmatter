@@ -85,10 +85,8 @@ impl<'a, 'cb> FrontmatterExtractor<'a, pulldown_cmark::Parser<'a, 'cb>> {
     /// Returns an instance that parses `markdown` with the default
     /// [`pulldown_cmark::Parser`].
     #[must_use]
-    pub fn parse_from_markdown(markdown: &'a str) -> Self {
-        let mut parser = Self::new(pulldown_cmark::Parser::new(markdown));
-        while parser.next().is_some() {}
-        parser
+    pub fn from_markdown(markdown: &'a str) -> Self {
+        Self::new(pulldown_cmark::Parser::new(markdown))
     }
 }
 
@@ -229,7 +227,7 @@ hello = "world"
 
 This is regular text
 "#;
-    let mut parser = FrontmatterExtractor::new(pulldown_cmark::Parser::new(source));
+    let mut parser = FrontmatterExtractor::from_markdown(source);
     let mut html = String::new();
     pulldown_cmark::html::push_html(&mut html, &mut parser);
     assert_eq!(
@@ -243,6 +241,37 @@ This is regular text
 
     let code_block = frontmatter.code_block.expect("code block not detected");
     assert_eq!(code_block.language, Some(CowStr::from("toml")));
+    let deserialized: Attributes = toml::from_str(&code_block.source).unwrap();
+
+    assert_eq!(deserialized.hello, "world");
+}
+
+#[test]
+fn indented_parse_test() {
+    #[derive(serde::Serialize, serde::Deserialize, Debug)]
+    struct Attributes {
+        hello: String,
+    }
+    let source = r#"# My **Document**
+
+    hello = "world"
+
+This is regular text
+"#;
+    let mut parser = FrontmatterExtractor::from_markdown(source);
+    let mut html = String::new();
+    pulldown_cmark::html::push_html(&mut html, &mut parser);
+    assert_eq!(
+        html,
+        "<h1>My <strong>Document</strong></h1>\n<p>This is regular text</p>\n"
+    );
+
+    let frontmatter = parser.frontmatter.expect("frontmatter not detected");
+
+    assert_eq!(frontmatter.title.as_deref(), Some("My Document"));
+
+    let code_block = frontmatter.code_block.expect("code block not detected");
+    assert_eq!(code_block.language, None);
     let deserialized: Attributes = toml::from_str(&code_block.source).unwrap();
 
     assert_eq!(deserialized.hello, "world");

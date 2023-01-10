@@ -80,9 +80,7 @@ the entire document. It is included in the repository at
 // This example extracts the frontmatter from the Markdown,
 // `FrontmatterExtractor::extract()` which stops parsing the Markdown
 // document after the frontmatter extraction is complete.
-let extractor = FrontmatterExtractor::new(pulldown_cmark::Parser::new(include_str!(
-    "../frontmatter-example.md"
-)));
+let extractor = FrontmatterExtractor::from_markdown(include_str!("../frontmatter-example.md"));
 let frontmatter = extractor.extract().expect("frontmatter not detected");
 assert_eq!(
     frontmatter.title.expect("title not detected"),
