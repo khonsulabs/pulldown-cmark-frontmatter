@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="pulldown-cmark-frontmatter"><meta name="keywords" content="rust, rustlang, rust-lang, pulldown_cmark_frontmatter"><title>pulldown_cmark_frontmatter - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../normalize.css"><link rel="stylesheet" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../ayu.css" disabled><link rel="stylesheet" href="../dark.css" disabled><link rel="stylesheet" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script defer src="../crates.js"></script><script defer src="../main.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../pulldown_cmark_frontmatter/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../pulldown_cmark_frontmatter/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><h2 class="location"><a href="#">Crate pulldown_cmark_frontmatter</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#structs">Structs</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Crate <a class="mod" href="#">pulldown_cmark_frontmatter</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/pulldown_cmark_frontmatter/lib.rs.html#1-249">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="pulldown-cmark-frontmatter"><a href="#pulldown-cmark-frontmatter">pulldown-cmark-frontmatter</a></h2>
+<p><img src="https://img.shields.io/badge/unsafe-forbid-success" alt="pulldown-cmark-frontmatter forbids unsafe code" />
+<a href="https://crates.io/crates/pulldown-cmark-frontmatter"><img src="https://img.shields.io/crates/v/pulldown-cmark-frontmatter.svg" alt="crate version" /></a>
+<a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/actions?query=workflow:Tests"><img src="https://img.shields.io/github/actions/workflow/status/khonsulabs/pulldown-cmark-frontmatter/rust.yml?branch=main" alt="Live Build Status" /></a>
+<a href="https://khonsulabs.github.io/pulldown-cmark-frontmatter/coverage/"><img src="https://khonsulabs.github.io/pulldown-cmark-frontmatter/coverage/badge.svg" alt="HTML Coverage Report for main branch" /></a>
+<a href="https://khonsulabs.github.io/pulldown-cmark-frontmatter/main/pulldown-cmark-frontmatter"><img src="https://img.shields.io/badge/docs-main-informational" alt="Documentation" /></a></p>
+<p><em>This crate was written by someone unaffiliated with the <code>pulldown-cmark</code>
+crate.</em></p>
+<p>This crate makes it easy to parse frontmatter contained within Markdown
+documents when using the <a href="https://github.com/raphlinus/pulldown-cmark">pulldown-cmark</a> Markdown parser.</p>
+<p>Unlike many other frontmatter styles, this crate enforces a basic document
+format:</p>
+<ul>
+<li>Optional top-level (h1) heading</li>
+<li>Optional code block</li>
+<li>Remaining Markdown document</li>
+</ul>
+<p>By utilizing a code block instead of other markers, most Markdown editing
+software can more intelligently handle syntax highlighting, errors, and more.</p>
+<p>The <code>FrontmatterExtractor</code> type will detect and return a plain-text
+representation of a top-level heading, if it’s the first element in the
+document. The heading will still be returned when iterating over the
+<code>pulldown_cmark::Event</code>s.</p>
+<p>After the optional top-level heading, if a code block is encountered, it will be
+returned as <code>Frontmatter::code_block</code>. Unlike the heading, <em>the frontmatter code
+block will not appear in the iterated <code>Event</code>s</em>.</p>
+<p>This repository includes <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/frontmatter-example.md">frontmatter-example.md</a>
+which both the <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/html.rs">HTML rendering example</a> and the <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/extractor.rs">extractor
+example</a> use.</p>
+<h3 id="html-rendering-example"><a href="#html-rendering-example">HTML Rendering Example</a></h3>
+<p>This example shows how to use this crate with <code>pulldown-cmark</code>’s html module. It
+is included in the repository at <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/html.rs">examples/html.rs</a>.</p>
+
+<div class="example-wrap ignore"><div class='tooltip'>ⓘ</div><pre class="rust rust-example-rendered"><code><span class="comment">// This example renders the example Markdown to html using
+// `pulldown_cmark::html`, while also extracting the frontmatter from
+// Markdown.
+</span><span class="kw">let </span><span class="kw-2">mut </span>extractor = FrontmatterExtractor::new(pulldown_cmark::Parser::new(<span class="macro">include_str!</span>(
+    <span class="string">&quot;../frontmatter-example.md&quot;
+</span>)));
+
+<span class="comment">// The only difference from using the FrontmatterExtractor and the regular
+// pulldown_cmark::Parser is that you must pass a mutable reference to the
+// extractor to be able to read the Frontmatter it extracts.
+</span><span class="kw">let </span><span class="kw-2">mut </span>rendered = String::new();
+pulldown_cmark::html::push_html(<span class="kw-2">&amp;mut </span>rendered, <span class="kw-2">&amp;mut </span>extractor);
+<span class="macro">assert_eq!</span>(rendered, <span class="macro">include_str!</span>(<span class="string">&quot;../frontmatter-example.html&quot;</span>));
+
+<span class="kw">let </span>frontmatter = extractor.frontmatter.expect(<span class="string">&quot;frontmatter not detected&quot;</span>);
+<span class="macro">assert_eq!</span>(
+    frontmatter.title.expect(<span class="string">&quot;title not detected&quot;</span>),
+    <span class="string">&quot;Frontmatter Example Document&quot;
+</span>);
+<span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
+<span class="macro">assert_eq!</span>(code_block.language.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;toml&quot;</span>));
+<span class="kw">let </span>attrs: ExampleAttributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).expect(<span class="string">&quot;invalid toml&quot;</span>);
+<span class="macro">assert_eq!</span>(attrs.author, <span class="string">&quot;https://fosstodon.org/ecton&quot;</span>);</code></pre></div>
+<p>The repository includes the <a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/frontmatter-example.html">rendered html output</a>
+to see what the produced HTML looks like.</p>
+<h3 id="extractor-example"><a href="#extractor-example">Extractor Example</a></h3>
+<p>This example extracts the frontmatter from a Markdown document without parsing
+the entire document. It is included in the repository at
+<a href="https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/extractor.rs">examples/extractor.rs</a>.</p>
+
+<div class="example-wrap ignore"><div class='tooltip'>ⓘ</div><pre class="rust rust-example-rendered"><code><span class="comment">// This example extracts the frontmatter from the Markdown,
+// `FrontmatterExtractor::extract()` which stops parsing the Markdown
+// document after the frontmatter extraction is complete.
+</span><span class="kw">let </span>extractor = FrontmatterExtractor::new(pulldown_cmark::Parser::new(<span class="macro">include_str!</span>(
+    <span class="string">&quot;../frontmatter-example.md&quot;
+</span>)));
+<span class="kw">let </span>frontmatter = extractor.extract().expect(<span class="string">&quot;frontmatter not detected&quot;</span>);
+<span class="macro">assert_eq!</span>(
+    frontmatter.title.expect(<span class="string">&quot;title not detected&quot;</span>),
+    <span class="string">&quot;Frontmatter Example Document&quot;
+</span>);
+<span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
+<span class="macro">assert_eq!</span>(code_block.language.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;toml&quot;</span>));
+<span class="kw">let </span>attrs: ExampleAttributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).expect(<span class="string">&quot;invalid toml&quot;</span>);
+<span class="macro">assert_eq!</span>(attrs.author, <span class="string">&quot;https://fosstodon.org/ecton&quot;</span>);</code></pre></div>
+<h3 id="open-source-licenses"><a href="#open-source-licenses">Open-source Licenses</a></h3>
+<p>This project, like all projects from <a href="https://khonsulabs.com/">Khonsu Labs</a>, are
+open-source. This repository is available under the <a href="./LICENSE-MIT">MIT License</a>
+or the <a href="./LICENSE-APACHE">Apache License 2.0</a>.</p>
+<p>To learn more about contributing, please see <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.CodeBlock.html" title="pulldown_cmark_frontmatter::CodeBlock struct">CodeBlock</a></div><div class="item-right docblock-short">A code block from a Markdown document’s <a href="struct.Frontmatter.html" title="Frontmatter"><code>Frontmatter</code></a>.</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Frontmatter.html" title="pulldown_cmark_frontmatter::Frontmatter struct">Frontmatter</a></div><div class="item-right docblock-short">Metadata stored within a Markdown document.</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.FrontmatterExtractor.html" title="pulldown_cmark_frontmatter::FrontmatterExtractor struct">FrontmatterExtractor</a></div><div class="item-right docblock-short">Extracts <a href="struct.Frontmatter.html" title="Frontmatter"><code>Frontmatter</code></a> from any <code>Iterator&lt;Item = pulldown_cmark::Event&lt;'_&gt;&gt;</code>.</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="pulldown_cmark_frontmatter" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

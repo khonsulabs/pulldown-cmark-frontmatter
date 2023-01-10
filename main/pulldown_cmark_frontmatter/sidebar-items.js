@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["CodeBlock","A code block from a Markdown document’s [`Frontmatter`]."],["Frontmatter","Metadata stored within a Markdown document."],["FrontmatterExtractor","Extracts [`Frontmatter`] from any `Iterator<Item = pulldown_cmark::Event<'_>>`."]]};
