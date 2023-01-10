@@ -1,0 +1,18 @@
+[package]
+name = "pulldown-cmark-frontmatter"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "A Frontmatter extractor for Markdown documents"
+repository = "https://github.com/khonsulabs/pulldown-cmark-frontmatter"
+keywords = ["pulldown-cmark", "markdown", "frontmatter"]
+categories = ["parser-implementations"]
+readme = "./README.md"
+rust-version = "1.58"
+
+[dependencies]
+pulldown-cmark = { version = "0.9.2", default-features = false }
+
+[dev-dependencies]
+serde = { version = "1.0.152", features = ["derive"] }
+toml = "0.5.10"
