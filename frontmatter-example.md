@@ -1,7 +1,7 @@
 # Frontmatter Example Document
 
 ```toml
-author = "https://fosstodon.org/ecton"
+author = "https://fosstodon.org/@ecton"
 last_updated_at = "2023-01-10 08:54:12-08:00" # date --rfc-3339=seconds
 ```
 

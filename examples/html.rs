@@ -28,7 +28,7 @@ fn main() {
     let code_block = frontmatter.code_block.expect("code block not detected");
     assert_eq!(code_block.language.as_deref(), Some("toml"));
     let attrs: ExampleAttributes = toml::from_str(&code_block.source).expect("invalid toml");
-    assert_eq!(attrs.author, "https://fosstodon.org/ecton");
+    assert_eq!(attrs.author, "https://fosstodon.org/@ecton");
     // end rustme snippet
 }
 
