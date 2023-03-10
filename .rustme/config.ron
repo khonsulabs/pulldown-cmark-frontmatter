@@ -32,8 +32,8 @@ Configuration(
                 release: "https://docs.rs/pulldown-cmark-frontmatter",
             ),
             "src-base": (
-                default: "https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/main",
-                release: "https://github.com/khonsulabs/pulldown_cmark_frontmatter/blob/v0.1.0",
+                default: "https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main",
+                release: "https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.1.0",
             ),
         }
     ],
