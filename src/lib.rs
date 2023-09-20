@@ -37,7 +37,7 @@ where
     /// The detected frontmatter, if any.
     pub frontmatter: Option<Frontmatter<'a>>,
     source: T,
-    state: DocumentAttributeParserState<'a>,
+    pub state: DocumentAttributeParserState<'a>,
 }
 
 impl<'a, T> FrontmatterExtractor<'a, T>
@@ -78,6 +78,18 @@ where
         }
 
         self.frontmatter
+    }
+    /// Iterate over the FrontmatterExtractor iterator and stop after it has finished
+    /// searching for frontmatter. Returns the Iterator so you can do additional parsing
+    /// on the rest of the document. The optional first H1 title header and frontmatter
+    /// code block have been consumed
+    pub fn iterate_and_return(mut self) -> FrontmatterExtractor<'a, T> {
+        while let Some(_) = self.next() {
+            if matches!(self.state, DocumentAttributeParserState::InDocument) {
+                break;
+            }
+        }
+        self
     }
 }
 
@@ -156,7 +168,7 @@ where
     }
 }
 
-enum DocumentAttributeParserState<'a> {
+pub enum DocumentAttributeParserState<'a> {
     Parsing,
     InTitle,
     InAttributeCodeBlock(CodeBlockKind<'a>),
@@ -185,7 +197,8 @@ impl<'a> DocumentAttributeParserState<'a> {
     }
 }
 
-/// Metadata stored within a Markdown document.
+/// Metadata stored within a Markdown document
+#[derive(Debug, Clone)]
 pub struct Frontmatter<'a> {
     /// The top-level heading's plain-text contents, if the document began with
     /// a top-level heading.
@@ -205,6 +218,7 @@ impl<'a> Frontmatter<'a> {
 }
 
 /// A code block from a Markdown document's [`Frontmatter`].
+#[derive(Clone, Debug)]
 pub struct CodeBlock<'a> {
     /// The contents of the code block.
     pub source: CowStr<'a>,
