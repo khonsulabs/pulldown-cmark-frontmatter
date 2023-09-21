@@ -5,7 +5,7 @@
 [![crate version](https://img.shields.io/crates/v/pulldown-cmark-frontmatter.svg)](https://crates.io/crates/pulldown-cmark-frontmatter)
 [![Live Build Status](https://img.shields.io/github/actions/workflow/status/khonsulabs/pulldown-cmark-frontmatter/rust.yml?branch=main)](https://github.com/khonsulabs/pulldown-cmark-frontmatter/actions?query=workflow:Tests)
 [![HTML Coverage Report for `main` branch](https://khonsulabs.github.io/pulldown-cmark-frontmatter/coverage/badge.svg)](https://khonsulabs.github.io/pulldown-cmark-frontmatter/coverage/)
-[![Documentation](https://img.shields.io/badge/docs-main-informational)](https://khonsulabs.github.io/pulldown-cmark-frontmatter/main/pulldown_cmark_frontmatter)
+[![Documentation](https://img.shields.io/badge/docs-main-informational)](https://docs.rs/pulldown-cmark-frontmatter)
 
 *This crate was written by someone unaffiliated with the `pulldown-cmark`
 crate.*
@@ -93,10 +93,10 @@ assert_eq!(attrs.author, "https://fosstodon.org/@ecton");
 ```
 
 [pulldown-cmark]: https://github.com/raphlinus/pulldown-cmark
-[html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/html.rs
-[frontmatter-html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/frontmatter-example.html
-[frontmatter-md]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/frontmatter-example.md
-[extractor]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/main/examples/extractor.rs
+[html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.2.0/examples/html.rs
+[frontmatter-html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.2.0/frontmatter-example.html
+[frontmatter-md]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.2.0/frontmatter-example.md
+[extractor]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.2.0/examples/extractor.rs
 
 ## Open-source Licenses
 
