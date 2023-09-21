@@ -100,8 +100,8 @@ assert_eq!(attrs.author, "https://fosstodon.org/@ecton");
 
 ## Open-source Licenses
 
-This project, like all projects from [Khonsu Labs](https://khonsulabs.com/), are
-open-source. This repository is available under the [MIT License](./LICENSE-MIT)
-or the [Apache License 2.0](./LICENSE-APACHE).
+This project, like all projects from [Khonsu Labs](https://khonsulabs.com/), is open-source.
+This repository is available under the [MIT License](./LICENSE-MIT) or the
+[Apache License 2.0](./LICENSE-APACHE).
 
 To learn more about contributing, please see [CONTRIBUTING.md](./CONTRIBUTING.md).

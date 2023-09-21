@@ -1,6 +1,6 @@
 [package]
 name = "pulldown-cmark-frontmatter"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "A Frontmatter extractor for Markdown documents"
@@ -15,7 +15,7 @@ pulldown-cmark = { version = "0.9.2", default-features = false }
 
 [dev-dependencies]
 serde = { version = "1.0.152", features = ["derive"] }
-toml = "0.7.2"
+toml = "0.8.0"
 
 [workspace]
 members = ["xtask"]
