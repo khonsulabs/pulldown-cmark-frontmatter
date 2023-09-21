@@ -13,6 +13,8 @@
     clippy::missing_errors_doc
 )]
 
+use std::vec;
+
 use pulldown_cmark::{CodeBlockKind, CowStr, Event};
 
 /// Extracts [`Frontmatter`] from any `Iterator<Item =
@@ -37,7 +39,7 @@ where
     /// The detected frontmatter, if any.
     pub frontmatter: Option<Frontmatter<'a>>,
     source: T,
-    pub state: DocumentAttributeParserState<'a>,
+    state: DocumentAttributeParserState<'a>,
 }
 
 impl<'a, T> FrontmatterExtractor<'a, T>
@@ -79,17 +81,34 @@ where
 
         self.frontmatter
     }
-    /// Iterate over the FrontmatterExtractor iterator and stop after it has finished
-    /// searching for frontmatter. Returns the Iterator so you can do additional parsing
-    /// on the rest of the document. The optional first H1 title header and frontmatter
-    /// code block have been consumed
-    pub fn iterate_and_return(mut self) -> FrontmatterExtractor<'a, T> {
-        while let Some(_) = self.next() {
-            if matches!(self.state, DocumentAttributeParserState::InDocument) {
+
+    /// Scans the start of the document looking for [`Frontmatter`]. If
+    /// frontmatter is detected, it will be returned.
+    ///
+    /// The underlying iterator will be advanced to find the frontmatter, and
+    /// any [`Event`]s that would normally be returned will be buffered so that
+    /// they can still be returned from [`FrontmatterExtractor::next()`].
+    pub fn extract_buffered(&mut self) -> Option<&Frontmatter<'a>> {
+        let mut buffered_events = Vec::new();
+        while let Some(event) = self.next() {
+            buffered_events.push(event);
+            if self.extracted() {
                 break;
             }
         }
-        self
+
+        self.state = DocumentAttributeParserState::InDocumentBuffered(buffered_events.into_iter());
+
+        self.frontmatter.as_ref()
+    }
+
+    /// Returns true once the extractor is finished extracting the frontmatter.
+    ///
+    /// [`self.frontmatter`](Self::frontmatter) may not contain the full data
+    /// from the underlying document until this function returns true.
+    #[must_use]
+    pub const fn extracted(&self) -> bool {
+        matches!(self.state, DocumentAttributeParserState::InDocument)
     }
 }
 
@@ -109,6 +128,19 @@ where
     type Item = Event<'a>;
 
     fn next(&mut self) -> Option<Self::Item> {
+        match &mut self.state {
+            DocumentAttributeParserState::InDocumentBuffered(buffered) => {
+                if let Some(event) = buffered.next() {
+                    return Some(event);
+                }
+
+                self.state = DocumentAttributeParserState::InDocument;
+                return self.source.next();
+            }
+            DocumentAttributeParserState::InDocument => return self.source.next(),
+            _ => {}
+        }
+
         loop {
             match self.source.next()? {
                 Event::Text(text) if self.state.in_document_title() => {
@@ -168,10 +200,11 @@ where
     }
 }
 
-pub enum DocumentAttributeParserState<'a> {
+enum DocumentAttributeParserState<'a> {
     Parsing,
     InTitle,
     InAttributeCodeBlock(CodeBlockKind<'a>),
+    InDocumentBuffered(vec::IntoIter<Event<'a>>),
     InDocument,
 }
 
@@ -258,6 +291,20 @@ This is regular text
     let deserialized: Attributes = toml::from_str(&code_block.source).unwrap();
 
     assert_eq!(deserialized.hello, "world");
+}
+
+#[test]
+fn extract_buffered() {
+    let mut parser = FrontmatterExtractor::from_markdown("# Heading\n\n    hello world\n\nBody");
+    let frontmatter = parser.extract_buffered().unwrap();
+    assert_eq!(frontmatter.title.as_deref(), Some("Heading"));
+    assert_eq!(
+        frontmatter.code_block.as_ref().unwrap().source.as_ref(),
+        "hello world\n"
+    );
+    let mut html = String::new();
+    pulldown_cmark::html::push_html(&mut html, parser);
+    assert_eq!(html, "<h1>Heading</h1>\n<p>Body</p>\n");
 }
 
 #[test]
