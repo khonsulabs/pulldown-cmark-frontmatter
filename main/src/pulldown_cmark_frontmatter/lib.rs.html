@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9bb858ba049f1f21.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="pulldown_cmark_frontmatter" data-themes="" data-resource-suffix="" data-rustdoc-version="1.72.1 (d5c2e9c34 2023-09-13)" data-channel="1.72.1" data-search-js="search-f6292fe389d70017.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ><script src="../../static.files/storage-59fd9b8ccb335783.js"></script><script defer src="../../static.files/source-script-106908c7a7964ba4.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../pulldown_cmark_frontmatter/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-dd39b87e5fcfba68.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="pulldown_cmark_frontmatter" data-themes="" data-resource-suffix="" data-rustdoc-version="1.80.0 (051478957 2024-07-21)" data-channel="1.80.0" data-search-js="search-d52510db62a78183.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-20a3ad099b048cf2.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -335,9 +335,7 @@
 <a href="#335" id="335">335</a>
 <a href="#336" id="336">336</a>
 <a href="#337" id="337">337</a>
-<a href="#338" id="338">338</a>
-<a href="#339" id="339">339</a>
-</pre></div><pre class="rust"><code><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">&quot;../README.md&quot;</span>)]
+</pre></div><pre class="rust"><code><span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
 #![forbid(unsafe_code)]
 #![warn(
     clippy::cargo,
@@ -354,36 +352,36 @@
 
 </span><span class="kw">use </span>std::vec;
 
-<span class="kw">use </span>pulldown_cmark::{CodeBlockKind, CowStr, Event};
+<span class="kw">use </span>pulldown_cmark::{CodeBlockKind, CowStr, Event, DefaultBrokenLinkCallback};
 
 <span class="doccomment">/// Extracts [`Frontmatter`] from any `Iterator&lt;Item =
-/// pulldown_cmark::Event&lt;&#39;_&gt;&gt;`.
+/// pulldown_cmark::Event&lt;'_&gt;&gt;`.
 ///
-/// This type implements `Iterator&lt;Item = pulldown_cmark::Event&lt;&#39;_&gt;&gt;`, so it can
+/// This type implements `Iterator&lt;Item = pulldown_cmark::Event&lt;'_&gt;&gt;`, so it can
 /// be used interchangeably with any Markdown processing code that previously
 /// interacted with [`pulldown_cmark::Parser`].
 ///
-/// This type&#39;s [`Event`] iterator will look for a top-level
+/// This type's [`Event`] iterator will look for a top-level
 /// heading (h1) and/or a code block at the start of the document. If either or
 /// both are detected, [`FrontmatterExtractor::frontmatter`] will be populated
 /// with the detected [`Frontmatter`].
 ///
-/// If a code block is detected in the frontmatter, the code block&#39;s
+/// If a code block is detected in the frontmatter, the code block's
 /// [`Event`]s not be returned when iterating. The top-level
-/// heading&#39;s events will be returned as they appear in the original iterator.
-</span><span class="kw">pub struct </span>FrontmatterExtractor&lt;<span class="lifetime">&#39;a</span>, T&gt;
+/// heading's events will be returned as they appear in the original iterator.
+</span><span class="kw">pub struct </span>FrontmatterExtractor&lt;<span class="lifetime">'a</span>, T&gt;
 <span class="kw">where
-    </span>T: Iterator&lt;Item = Event&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    </span>T: Iterator&lt;Item = Event&lt;<span class="lifetime">'a</span>&gt;&gt;,
 {
     <span class="doccomment">/// The detected frontmatter, if any.
-    </span><span class="kw">pub </span>frontmatter: <span class="prelude-ty">Option</span>&lt;Frontmatter&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    </span><span class="kw">pub </span>frontmatter: <span class="prelude-ty">Option</span>&lt;Frontmatter&lt;<span class="lifetime">'a</span>&gt;&gt;,
     source: T,
-    state: DocumentAttributeParserState&lt;<span class="lifetime">&#39;a</span>&gt;,
+    state: DocumentAttributeParserState&lt;<span class="lifetime">'a</span>&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; FrontmatterExtractor&lt;<span class="lifetime">&#39;a</span>, T&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; FrontmatterExtractor&lt;<span class="lifetime">'a</span>, T&gt;
 <span class="kw">where
-    </span>T: Iterator&lt;Item = Event&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    </span>T: Iterator&lt;Item = Event&lt;<span class="lifetime">'a</span>&gt;&gt;,
 {
     <span class="doccomment">/// Returns a new instance that extracts frontmatter from the provided
     /// [`Event`] iterator.
@@ -395,7 +393,7 @@
         }
     }
 
-    <span class="kw">fn </span>frontmater_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>Frontmatter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>frontmater_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>Frontmatter&lt;<span class="lifetime">'a</span>&gt; {
         <span class="kw">if </span><span class="self">self</span>.frontmatter.is_none() {
             <span class="self">self</span>.frontmatter = <span class="prelude-val">Some</span>(Frontmatter {
                 title: <span class="prelude-val">None</span>,
@@ -403,7 +401,7 @@
             });
         }
 
-        <span class="self">self</span>.frontmatter.as_mut().expect(<span class="string">&quot;always initialized&quot;</span>)
+        <span class="self">self</span>.frontmatter.as_mut().expect(<span class="string">"always initialized"</span>)
     }
 
     <span class="doccomment">/// Scans the start of the document looking for [`Frontmatter`]. If
@@ -411,7 +409,7 @@
     ///
     /// This function will not consume the original iterator completely. It will
     /// stop as soon as it is done detecting the frontmatter.
-    </span><span class="kw">pub fn </span>extract(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Frontmatter&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    </span><span class="kw">pub fn </span>extract(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Frontmatter&lt;<span class="lifetime">'a</span>&gt;&gt; {
         <span class="kw">while let </span><span class="prelude-val">Some</span>(<span class="kw">_</span>) = <span class="self">self</span>.next() {
             <span class="kw">if </span><span class="macro">matches!</span>(<span class="self">self</span>.state, DocumentAttributeParserState::InDocument) {
                 <span class="kw">break</span>;
@@ -427,7 +425,7 @@
     /// The underlying iterator will be advanced to find the frontmatter, and
     /// any [`Event`]s that would normally be returned will be buffered so that
     /// they can still be returned from [`FrontmatterExtractor::next()`].
-    </span><span class="kw">pub fn </span>extract_buffered(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Frontmatter&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    </span><span class="kw">pub fn </span>extract_buffered(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Frontmatter&lt;<span class="lifetime">'a</span>&gt;&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>buffered_events = Vec::new();
         <span class="kw">while let </span><span class="prelude-val">Some</span>(event) = <span class="self">self</span>.next() {
             buffered_events.push(event);
@@ -451,20 +449,20 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;cb</span>&gt; FrontmatterExtractor&lt;<span class="lifetime">&#39;a</span>, pulldown_cmark::Parser&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;cb</span>&gt;&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; FrontmatterExtractor&lt;<span class="lifetime">'a</span>, pulldown_cmark::Parser&lt;<span class="lifetime">'a</span>, DefaultBrokenLinkCallback&gt;&gt; {
     <span class="doccomment">/// Returns an instance that parses `markdown` with the default
     /// [`pulldown_cmark::Parser`].
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>from_markdown(markdown: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>from_markdown(markdown: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new(pulldown_cmark::Parser::new(markdown))
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Iterator <span class="kw">for </span>FrontmatterExtractor&lt;<span class="lifetime">&#39;a</span>, T&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; Iterator <span class="kw">for </span>FrontmatterExtractor&lt;<span class="lifetime">'a</span>, T&gt;
 <span class="kw">where
-    </span>T: Iterator&lt;Item = Event&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    </span>T: Iterator&lt;Item = Event&lt;<span class="lifetime">'a</span>&gt;&gt;,
 {
-    <span class="kw">type </span>Item = Event&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">type </span>Item = Event&lt;<span class="lifetime">'a</span>&gt;;
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="kw">match </span><span class="kw-2">&amp;mut </span><span class="self">self</span>.state {
@@ -497,34 +495,32 @@
                         language,
                     });
                 }
-                Event::Start(pulldown_cmark::Tag::Heading(
-                    pulldown_cmark::HeadingLevel::H1,
-                    fragment,
+                Event::Start(pulldown_cmark::Tag::Heading {
+                    level: pulldown_cmark::HeadingLevel::H1,
+                    id,
                     classes,
-                )) <span class="kw">if </span>!<span class="self">self</span>.state.in_document() =&gt; {
+                    attrs,
+                }) <span class="kw">if </span>!<span class="self">self</span>.state.in_document() =&gt; {
                     <span class="self">self</span>.state = DocumentAttributeParserState::InTitle;
-                    <span class="kw">return </span><span class="prelude-val">Some</span>(Event::Start(pulldown_cmark::Tag::Heading(
-                        pulldown_cmark::HeadingLevel::H1,
-                        fragment,
+                    <span class="kw">return </span><span class="prelude-val">Some</span>(Event::Start(pulldown_cmark::Tag::Heading {
+                        level: pulldown_cmark::HeadingLevel::H1,
+                        id,
                         classes,
-                    )));
+                        attrs,
+                    }));
                 }
-                Event::End(pulldown_cmark::Tag::Heading(
+                Event::End(pulldown_cmark::TagEnd::Heading (
                     pulldown_cmark::HeadingLevel::H1,
-                    fragment,
-                    classes,
                 )) <span class="kw">if </span>!<span class="self">self</span>.state.in_document() =&gt; {
                     <span class="self">self</span>.state = DocumentAttributeParserState::Parsing;
-                    <span class="kw">return </span><span class="prelude-val">Some</span>(Event::End(pulldown_cmark::Tag::Heading(
+                    <span class="kw">return </span><span class="prelude-val">Some</span>(Event::End(pulldown_cmark::TagEnd::Heading (
                         pulldown_cmark::HeadingLevel::H1,
-                        fragment,
-                        classes,
                     )));
                 }
                 Event::Start(pulldown_cmark::Tag::CodeBlock(kind)) <span class="kw">if </span>!<span class="self">self</span>.state.in_document() =&gt; {
                     <span class="self">self</span>.state = DocumentAttributeParserState::InAttributeCodeBlock(kind);
                 }
-                Event::End(pulldown_cmark::Tag::CodeBlock(<span class="kw">_</span>)) <span class="kw">if </span>!<span class="self">self</span>.state.in_document() =&gt; {
+                Event::End(pulldown_cmark::TagEnd::CodeBlock) <span class="kw">if </span>!<span class="self">self</span>.state.in_document() =&gt; {
                     <span class="self">self</span>.state = DocumentAttributeParserState::InDocument;
                 }
                 other =&gt; {
@@ -539,15 +535,15 @@
     }
 }
 
-<span class="kw">enum </span>DocumentAttributeParserState&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">enum </span>DocumentAttributeParserState&lt;<span class="lifetime">'a</span>&gt; {
     Parsing,
     InTitle,
-    InAttributeCodeBlock(CodeBlockKind&lt;<span class="lifetime">&#39;a</span>&gt;),
-    InDocumentBuffered(vec::IntoIter&lt;Event&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
+    InAttributeCodeBlock(CodeBlockKind&lt;<span class="lifetime">'a</span>&gt;),
+    InDocumentBuffered(vec::IntoIter&lt;Event&lt;<span class="lifetime">'a</span>&gt;&gt;),
     InDocument,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DocumentAttributeParserState&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; DocumentAttributeParserState&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub fn </span>in_document(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="macro">matches!</span>(<span class="self">self</span>, <span class="self">Self</span>::InDocument)
     }
@@ -556,7 +552,7 @@
         <span class="macro">matches!</span>(<span class="self">self</span>, <span class="self">Self</span>::InAttributeCodeBlock(<span class="kw">_</span>))
     }
 
-    <span class="kw">pub fn </span>code_block_kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CodeBlockKind&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>code_block_kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; CodeBlockKind&lt;<span class="lifetime">'a</span>&gt; {
         <span class="kw">if let </span><span class="self">Self</span>::InAttributeCodeBlock(kind) = <span class="self">self </span>{
             kind.clone()
         } <span class="kw">else </span>{
@@ -571,32 +567,32 @@
 
 <span class="doccomment">/// Metadata stored within a Markdown document
 </span><span class="attr">#[derive(Debug, Clone)]
-</span><span class="kw">pub struct </span>Frontmatter&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="doccomment">/// The top-level heading&#39;s plain-text contents, if the document began with
+</span><span class="kw">pub struct </span>Frontmatter&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="doccomment">/// The top-level heading's plain-text contents, if the document began with
     /// a top-level heading.
     </span><span class="kw">pub </span>title: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// The frontmatter code block, if detected.
-    </span><span class="kw">pub </span>code_block: <span class="prelude-ty">Option</span>&lt;CodeBlock&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    </span><span class="kw">pub </span>code_block: <span class="prelude-ty">Option</span>&lt;CodeBlock&lt;<span class="lifetime">'a</span>&gt;&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Frontmatter&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Frontmatter&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">fn </span>title_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>String {
         <span class="kw">if </span><span class="self">self</span>.title.is_none() {
             <span class="self">self</span>.title = <span class="prelude-val">Some</span>(String::new());
         }
 
-        <span class="self">self</span>.title.as_mut().expect(<span class="string">&quot;always initialized&quot;</span>)
+        <span class="self">self</span>.title.as_mut().expect(<span class="string">"always initialized"</span>)
     }
 }
 
-<span class="doccomment">/// A code block from a Markdown document&#39;s [`Frontmatter`].
+<span class="doccomment">/// A code block from a Markdown document's [`Frontmatter`].
 </span><span class="attr">#[derive(Clone, Debug)]
-</span><span class="kw">pub struct </span>CodeBlock&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>CodeBlock&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// The contents of the code block.
-    </span><span class="kw">pub </span>source: CowStr&lt;<span class="lifetime">&#39;a</span>&gt;,
+    </span><span class="kw">pub </span>source: CowStr&lt;<span class="lifetime">'a</span>&gt;,
     <span class="doccomment">/// The language of the code block, which is the identifier following the
     /// three backticks in a fenced Markdown code block.
-    </span><span class="kw">pub </span>language: <span class="prelude-ty">Option</span>&lt;CowStr&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    </span><span class="kw">pub </span>language: <span class="prelude-ty">Option</span>&lt;CowStr&lt;<span class="lifetime">'a</span>&gt;&gt;,
 }
 
 <span class="attr">#[test]
@@ -605,45 +601,45 @@
     </span><span class="kw">struct </span>Attributes {
         hello: String,
     }
-    <span class="kw">let </span>source = <span class="string">r#&quot;# My **Document**
+    <span class="kw">let </span>source = <span class="string">r#"# My **Document**
 
 ```toml
-hello = &quot;world&quot;
+hello = "world"
 ```
 
 This is regular text
-&quot;#</span>;
+"#</span>;
     <span class="kw">let </span><span class="kw-2">mut </span>parser = FrontmatterExtractor::from_markdown(source);
     <span class="kw">let </span><span class="kw-2">mut </span>html = String::new();
     pulldown_cmark::html::push_html(<span class="kw-2">&amp;mut </span>html, <span class="kw-2">&amp;mut </span>parser);
     <span class="macro">assert_eq!</span>(
         html,
-        <span class="string">&quot;&lt;h1&gt;My &lt;strong&gt;Document&lt;/strong&gt;&lt;/h1&gt;\n&lt;p&gt;This is regular text&lt;/p&gt;\n&quot;
+        <span class="string">"&lt;h1&gt;My &lt;strong&gt;Document&lt;/strong&gt;&lt;/h1&gt;\n&lt;p&gt;This is regular text&lt;/p&gt;\n"
     </span>);
 
-    <span class="kw">let </span>frontmatter = parser.frontmatter.expect(<span class="string">&quot;frontmatter not detected&quot;</span>);
+    <span class="kw">let </span>frontmatter = parser.frontmatter.expect(<span class="string">"frontmatter not detected"</span>);
 
-    <span class="macro">assert_eq!</span>(frontmatter.title.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;My Document&quot;</span>));
+    <span class="macro">assert_eq!</span>(frontmatter.title.as_deref(), <span class="prelude-val">Some</span>(<span class="string">"My Document"</span>));
 
-    <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
-    <span class="macro">assert_eq!</span>(code_block.language, <span class="prelude-val">Some</span>(CowStr::from(<span class="string">&quot;toml&quot;</span>)));
+    <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">"code block not detected"</span>);
+    <span class="macro">assert_eq!</span>(code_block.language, <span class="prelude-val">Some</span>(CowStr::from(<span class="string">"toml"</span>)));
     <span class="kw">let </span>deserialized: Attributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).unwrap();
 
-    <span class="macro">assert_eq!</span>(deserialized.hello, <span class="string">&quot;world&quot;</span>);
+    <span class="macro">assert_eq!</span>(deserialized.hello, <span class="string">"world"</span>);
 }
 
 <span class="attr">#[test]
 </span><span class="kw">fn </span>extract_buffered() {
-    <span class="kw">let </span><span class="kw-2">mut </span>parser = FrontmatterExtractor::from_markdown(<span class="string">&quot;# Heading\n\n    hello world\n\nBody&quot;</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>parser = FrontmatterExtractor::from_markdown(<span class="string">"# Heading\n\n    hello world\n\nBody"</span>);
     <span class="kw">let </span>frontmatter = parser.extract_buffered().unwrap();
-    <span class="macro">assert_eq!</span>(frontmatter.title.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;Heading&quot;</span>));
+    <span class="macro">assert_eq!</span>(frontmatter.title.as_deref(), <span class="prelude-val">Some</span>(<span class="string">"Heading"</span>));
     <span class="macro">assert_eq!</span>(
         frontmatter.code_block.as_ref().unwrap().source.as_ref(),
-        <span class="string">&quot;hello world\n&quot;
+        <span class="string">"hello world\n"
     </span>);
     <span class="kw">let </span><span class="kw-2">mut </span>html = String::new();
     pulldown_cmark::html::push_html(<span class="kw-2">&amp;mut </span>html, parser);
-    <span class="macro">assert_eq!</span>(html, <span class="string">&quot;&lt;h1&gt;Heading&lt;/h1&gt;\n&lt;p&gt;Body&lt;/p&gt;\n&quot;</span>);
+    <span class="macro">assert_eq!</span>(html, <span class="string">"&lt;h1&gt;Heading&lt;/h1&gt;\n&lt;p&gt;Body&lt;/p&gt;\n"</span>);
 }
 
 <span class="attr">#[test]
@@ -652,28 +648,28 @@ This is regular text
     </span><span class="kw">struct </span>Attributes {
         hello: String,
     }
-    <span class="kw">let </span>source = <span class="string">r#&quot;# My **Document**
+    <span class="kw">let </span>source = <span class="string">r#"# My **Document**
 
-    hello = &quot;world&quot;
+    hello = "world"
 
 This is regular text
-&quot;#</span>;
+"#</span>;
     <span class="kw">let </span><span class="kw-2">mut </span>parser = FrontmatterExtractor::from_markdown(source);
     <span class="kw">let </span><span class="kw-2">mut </span>html = String::new();
     pulldown_cmark::html::push_html(<span class="kw-2">&amp;mut </span>html, <span class="kw-2">&amp;mut </span>parser);
     <span class="macro">assert_eq!</span>(
         html,
-        <span class="string">&quot;&lt;h1&gt;My &lt;strong&gt;Document&lt;/strong&gt;&lt;/h1&gt;\n&lt;p&gt;This is regular text&lt;/p&gt;\n&quot;
+        <span class="string">"&lt;h1&gt;My &lt;strong&gt;Document&lt;/strong&gt;&lt;/h1&gt;\n&lt;p&gt;This is regular text&lt;/p&gt;\n"
     </span>);
 
-    <span class="kw">let </span>frontmatter = parser.frontmatter.expect(<span class="string">&quot;frontmatter not detected&quot;</span>);
+    <span class="kw">let </span>frontmatter = parser.frontmatter.expect(<span class="string">"frontmatter not detected"</span>);
 
-    <span class="macro">assert_eq!</span>(frontmatter.title.as_deref(), <span class="prelude-val">Some</span>(<span class="string">&quot;My Document&quot;</span>));
+    <span class="macro">assert_eq!</span>(frontmatter.title.as_deref(), <span class="prelude-val">Some</span>(<span class="string">"My Document"</span>));
 
-    <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">&quot;code block not detected&quot;</span>);
+    <span class="kw">let </span>code_block = frontmatter.code_block.expect(<span class="string">"code block not detected"</span>);
     <span class="macro">assert_eq!</span>(code_block.language, <span class="prelude-val">None</span>);
     <span class="kw">let </span>deserialized: Attributes = toml::from_str(<span class="kw-2">&amp;</span>code_block.source).unwrap();
 
-    <span class="macro">assert_eq!</span>(deserialized.hello, <span class="string">&quot;world&quot;</span>);
+    <span class="macro">assert_eq!</span>(deserialized.hello, <span class="string">"world"</span>);
 }
 </code></pre></div></section></main></body></html>
