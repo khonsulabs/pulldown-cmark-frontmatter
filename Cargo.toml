@@ -1,6 +1,6 @@
 [package]
 name = "pulldown-cmark-frontmatter"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "A Frontmatter extractor for Markdown documents"
@@ -11,11 +11,14 @@ readme = "./README.md"
 rust-version = "1.58"
 
 [dependencies]
-pulldown-cmark = { version = "0.11.0", default-features = false, features = ["html"] }
+pulldown-cmark = { version = "0.11.0", default-features = false }
 
 [dev-dependencies]
 serde = { version = "1.0.152", features = ["derive"] }
 toml = "0.8.0"
+pulldown-cmark = { version = "0.11.0", default-features = false, features = [
+    "html",
+] }
 
 [workspace]
 members = ["xtask"]
