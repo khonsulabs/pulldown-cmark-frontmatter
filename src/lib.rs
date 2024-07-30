@@ -15,7 +15,7 @@
 
 use std::vec;
 
-use pulldown_cmark::{CodeBlockKind, CowStr, Event};
+use pulldown_cmark::{CodeBlockKind, CowStr, Event, DefaultBrokenLinkCallback};
 
 /// Extracts [`Frontmatter`] from any `Iterator<Item =
 /// pulldown_cmark::Event<'_>>`.
@@ -112,7 +112,7 @@ where
     }
 }
 
-impl<'a, 'cb> FrontmatterExtractor<'a, pulldown_cmark::Parser<'a, 'cb>> {
+impl<'a> FrontmatterExtractor<'a, pulldown_cmark::Parser<'a, DefaultBrokenLinkCallback>> {
     /// Returns an instance that parses `markdown` with the default
     /// [`pulldown_cmark::Parser`].
     #[must_use]
@@ -158,34 +158,32 @@ where
                         language,
                     });
                 }
-                Event::Start(pulldown_cmark::Tag::Heading(
-                    pulldown_cmark::HeadingLevel::H1,
-                    fragment,
+                Event::Start(pulldown_cmark::Tag::Heading {
+                    level: pulldown_cmark::HeadingLevel::H1,
+                    id,
                     classes,
-                )) if !self.state.in_document() => {
+                    attrs,
+                }) if !self.state.in_document() => {
                     self.state = DocumentAttributeParserState::InTitle;
-                    return Some(Event::Start(pulldown_cmark::Tag::Heading(
-                        pulldown_cmark::HeadingLevel::H1,
-                        fragment,
+                    return Some(Event::Start(pulldown_cmark::Tag::Heading {
+                        level: pulldown_cmark::HeadingLevel::H1,
+                        id,
                         classes,
-                    )));
+                        attrs,
+                    }));
                 }
-                Event::End(pulldown_cmark::Tag::Heading(
+                Event::End(pulldown_cmark::TagEnd::Heading (
                     pulldown_cmark::HeadingLevel::H1,
-                    fragment,
-                    classes,
                 )) if !self.state.in_document() => {
                     self.state = DocumentAttributeParserState::Parsing;
-                    return Some(Event::End(pulldown_cmark::Tag::Heading(
+                    return Some(Event::End(pulldown_cmark::TagEnd::Heading (
                         pulldown_cmark::HeadingLevel::H1,
-                        fragment,
-                        classes,
                     )));
                 }
                 Event::Start(pulldown_cmark::Tag::CodeBlock(kind)) if !self.state.in_document() => {
                     self.state = DocumentAttributeParserState::InAttributeCodeBlock(kind);
                 }
-                Event::End(pulldown_cmark::Tag::CodeBlock(_)) if !self.state.in_document() => {
+                Event::End(pulldown_cmark::TagEnd::CodeBlock) if !self.state.in_document() => {
                     self.state = DocumentAttributeParserState::InDocument;
                 }
                 other => {
