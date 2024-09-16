@@ -93,10 +93,10 @@ assert_eq!(attrs.author, "https://fosstodon.org/@ecton");
 ```
 
 [pulldown-cmark]: https://github.com/raphlinus/pulldown-cmark
-[html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.3.0/examples/html.rs
-[frontmatter-html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.3.0/frontmatter-example.html
-[frontmatter-md]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.3.0/frontmatter-example.md
-[extractor]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.3.0/examples/extractor.rs
+[html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.4.0/examples/html.rs
+[frontmatter-html]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.4.0/frontmatter-example.html
+[frontmatter-md]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.4.0/frontmatter-example.md
+[extractor]: https://github.com/khonsulabs/pulldown-cmark-frontmatter/blob/v0.4.0/examples/extractor.rs
 
 ## Open-source Licenses
 
